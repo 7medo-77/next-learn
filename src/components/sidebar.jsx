@@ -1,61 +1,55 @@
-// import { home } from '@heroicons/react/20/solid';
-// import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import { HomeIcon } from '@heroicons/react/outline'; // For outline icons
-
+import { inter, varela } from "@/fonts.js";
+import React from 'react';
+import { HomeIcon, InformationCircleIcon, HeartIcon, FireIcon } from "@heroicons/react/20/solid";
+import Link from 'next/link';
 
 const Sidebar = () => {
-	return (
-		<div>
-{/*
-			<div className="fixed top-0 left-0 h-full w-64 bg-yellow-800 text-white flex flex-col justify-between">
-			  <div className="flex flex-col space-y-4 p-4">
-				<button className="flex items-center px-4 py-2 rounded-md hover:bg-gray-700">
-				  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
-					</svg>
-				  <span>Button 1</span>
-				</button>
-				<button className="flex items-center px-4 py-2 rounded-md hover:bg-gray-700">
-				  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
-					</svg>
-				  <span>Button 2</span>
-				</button>
-				<button className="flex items-center px-4 py-2 rounded-md hover:bg-gray-700">
-				  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
-					</svg>
-				  <span>Button 3</span>
-				</button>
-				<button className="flex items-center px-4 py-2 rounded-md hover:bg-gray-700">
-				  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
-					</svg>
-				  <span>Button 4</span>
-				</button>
+		const linkArray = [
+			{
+				href: "/",
+				title: "Home",
+				icon: () => { return (<HomeIcon className="h-6 w-6 inline-block mr-2"/>) }
+			},
+			{
+				href: "/about",
+				title: "About",
+				icon: () => { return (<InformationCircleIcon className="h-6 w-6 inline-block mr-2"/>) }
+			},
+			{
+				href: "/Popular",
+				title: "Popular",
+				icon: () => { return (<FireIcon className="h-6 w-6 inline-block mr-2"/>) }
+			},
+			{
+				href: "/favourites",
+				title: "Favourites",
+				icon: () => { return (<HeartIcon className="h-6 w-6 inline-block mr-2"/>) }
+			},
+		];
+		return (
+			<div>
+
+			<div className="fixed top-0 left-0 h-full w-[250px] bg-gray-800 text-white flex flex-col justify-around">
+				<div className="border-2" ></div>
+
+				<ul className="space-y-2 basis-2/3 flex flex-col text-gray-800 gap-[50px] justify-center uppercase  ">
+					{linkArray.map((link) => {
+						return (
+							<li className=" bg-[#1ED760] px-12 rounded ">
+								<Link href={link.href} className="flex flex-row align-center" >
+									{link.icon()}<p className={`${inter.className} inline font-weight-[700] `} >{link.title}</p>
+								</Link>
+							</li>
+							)
+					})}
+				</ul>
+				<div className={`${varela.className} flex flex-row align-center justify-end px-4`} >
+					<Link href="/login" class=" bg-[#1ED760] text-white font-bold py-2 px-4 rounded hover:bg-green-600 ">Log In</Link>
 				</div>
 			</div>
-*/}
-			<div className="fixed top-0 left-0 h-full w-1/6 bg-blue-400 text-white flex flex-col justify-around">
-				<button className="flex items-center px-4 py-2 rounded-md hover:bg-gray-700">
-				  <HomeIcon />
-				  <span>Button 1</span>
-				</button>
-				<button className="flex items-center px-4 py-2 rounded-md hover:bg-gray-700">
-				  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
-					</svg>
-				  <span>Button 2</span>
-				</button>
-				<button className="flex items-center px-4 py-2 rounded-md hover:bg-gray-700">
-				  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
-					</svg>
-				  <span>Button 3</span>
-				</button>
-				<button className="flex items-center px-4 py-2 rounded-md hover:bg-gray-700">
-				  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 mr-2">
-					</svg>
-				  <span>Button 4</span>
-				</button>
-			</div>
 
-		</div>
-	)
+			</div>
+		)
 }
 
 export default Sidebar;
